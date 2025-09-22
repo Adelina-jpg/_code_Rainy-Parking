@@ -24,8 +24,8 @@ Wir haben viel über Teamarbeit gelernt: Wir waren anfangs sehr schnell unterweg
 4. Ressourcen
 
 APIs
-	•	Open-Meteo API
-	•	Parkendd Basel API
+        - parking: https://api.parkendd.de/Basel
+        - weather: https://api.open-meteo.com/v1/forecast?latitude=47.5584&longitude=7.5733&hourly=temperature_2m,rain&current=temperature_2m,rain&ref=freepublicapis.com
 
 Tools & Technologien
 	•	Figma (Prototyping)
@@ -36,10 +36,10 @@ Tools & Technologien
 ⸻
 
 5. Links
-	•	Projektname: Rainy Parking
-	•	Figma Mockup: https://www.figma.com/design/eQnoVjTLfJhwhbWJ6SGIvb/IM-III--Don%E2%80%99t-Fry-Today?node-id=13-3&t=ATr4q5pwMhfdtNE3-1
-	•	GitHub Repository: https://github.com/Adelina-jpg/Rainy-Parking.git
-	•	Projekt-URL (Deployment): [Link einfügen]
-	•	API-Links 
-            parking: https://api.parkendd.de/Basel
-            weather: https://api.open-meteo.com/v1/forecast?latitude=47.5584&longitude=7.5733&hourly=temperature_2m,rain&current=temperature_2m,rain&ref=freepublicapis.com
+    Projektname: Rainy Parking
+	Figma Mockup: https://www.figma.com/design/eQnoVjTLfJhwhbWJ6SGIvb/IM-III--Don%E2%80%99t-Fry-Today?node-id=13-3&t=ATr4q5pwMhfdtNE3-1
+	GitHub Repository: https://github.com/Adelina-jpg/Rainy-Parking.git
+	Projekt-URL (Deployment): [Link einfügen]
+	API-Links 
+        - parking: https://api.parkendd.de/Basel
+        - weather: https://api.open-meteo.com/v1/forecast?latitude=47.5584&longitude=7.5733&hourly=temperature_2m,rain&current=temperature_2m,rain&ref=freepublicapis.com
