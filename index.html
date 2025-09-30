@@ -1,11 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rainy Parking – Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="wrap">
+      <div class="title">
+        <h1 class="brand">RAINY <span class="droplet">PARKING</span></h1>
+        <p id="summary">
+          Vor <strong>30 Tagen</strong> gab es in Basel bei
+          <strong>11&nbsp;mm/h</strong> Regen <strong>3’000</strong> freie
+          Parkplätze.
+        </p>
+      </div>
+      <div class="panel controls">
+        <div class="slider-wrap">
+          <input
+            id="dayRange"
+            type="range"
+            min="0"
+            max="30"
+            value="30"
+            aria-label="Zeitraum wählen: Tage vor heute"
+          />
+          <div class="scale">
+            <span>vor 30 Tagen</span>
+            <span>heute</span>
+          </div>
+        </div>
+        <button class="btn" type="button">🚗📣 Hupen</button>
+      </div>
+    </header>
+
+    <main class="scene">
+      <div id="traffic" aria-hidden="true"></div>
+      <p class="hint">Regler bewegen → Zeit ändern</p>
+      <audio id="horn" src="sound/horn.mp3" preload="auto"></audio>
+    </main>
+
+    <footer class="wrap foot">
+      <small>
+        Datenquellen: Open-Meteo (Regen, mm/h) · Parkleitsystem Basel
+        (freie/belegte Parkplätze)
+      </small>
+    </footer>
+  </body>
 </html>
