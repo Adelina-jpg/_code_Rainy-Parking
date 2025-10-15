@@ -1,5 +1,17 @@
 const calEl = document.getElementById('calendar');
 const errorsEl = document.getElementById('errors');
+const dateText = document.getElementById('dateText');
+const rainText = document.getElementById('rainText');
+const freeText = document.getElementById('freeText');
+
+
+async function fetchOwn(date) {
+  const d = date.toISOString().slice(0,10); // YYYY-MM-DD
+  const res = await fetch(`/backend/api/getByDate.php?date=${d}`);
+  if (!res.ok) throw new Error('API error');
+  return res.json();
+}
+
 let viewDate = new Date();        // aktuell angezeigter Monat
 let selectedDate = null;          // vom User geklickt
 
@@ -34,7 +46,7 @@ calEl.append(head);
 
   // Wochentage
   const grid = document.createElement('div'); grid.className = 'cal-grid';
-  'M D M D F S S'.split(' ').forEach(d => {
+  ['Mo','Di','Mi','Do','Fr','Sa','So'].forEach(d => {
     const el = document.createElement('div'); el.className='cal-dow'; el.textContent=d; grid.append(el);
   });
 
@@ -60,7 +72,7 @@ calEl.append(head);
       errorsEl.textContent = '';
       renderCalendar();
       // Beispiel: Text oben aktualisieren
-      document.getElementById('dateText').textContent = d.toLocaleDateString('de-CH');
+      dateText.textContent = d.toLocaleDateString('de-CH');
     };
     grid.append(el);
   }
@@ -68,8 +80,8 @@ calEl.append(head);
 }
 renderCalendar();
 
-// Beispiel: Klick auf "abfragen" prüfen (kein Datum oder Zukunft)
-document.getElementById('queryBtn')?.addEventListener('click', () => {
+// klick
+document.getElementById('queryBtn')?.addEventListener('click', async () => {
   if (!selectedDate) {
     errorsEl.textContent = 'Bitte ein Datum wählen.';
     return;
@@ -78,7 +90,29 @@ document.getElementById('queryBtn')?.addEventListener('click', () => {
     errorsEl.textContent = 'Nur Daten aus der Vergangenheit sind erlaubt.';
     return;
   }
-  // hier später: API/DB-Abfrage starten …
+
+  errorsEl.textContent = 'Lade Daten…';
+  try {
+    const data = await fetchOwn(selectedDate);
+    const rows = data.records || [];
+
+    if (rows.length === 0) {
+      errorsEl.textContent = 'Keine Einträge für dieses Datum.';
+      rainText.textContent = '0.0';
+      freeText.textContent = '0';
+      return;
+    }
+
+    const avgRain = rows.reduce((a, r) => a + (r.rain_mm_h ?? 0), 0) / rows.length;
+    const freeSum = rows.reduce((a, r) => a + (r.free_spaces ?? 0), 0);
+
+    rainText.textContent = avgRain.toFixed(1);
+    freeText.textContent = freeSum.toLocaleString('de-CH');
+    errorsEl.textContent = '';
+  } catch (e) {
+    console.error(e);
+    errorsEl.textContent = 'Daten konnten nicht geladen werden.';
+  }
 });
 const hupiBtn = document.getElementById('hupiBtn');
 const hupiSound = document.getElementById('hupiSound');
@@ -87,3 +121,4 @@ hupiBtn?.addEventListener('click', () => {
   hupiSound.currentTime = 0;
   hupiSound.play();
 });
+

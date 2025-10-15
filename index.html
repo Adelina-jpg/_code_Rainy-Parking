@@ -31,8 +31,12 @@
     </section>
 
     <!-- Rechte Spalte: Bühne mit Auto, Hup-Button & fahrende Autos im Hintergrund -->
-    <section class="panel stage">
-<img src="media/big car pink.png" alt="Grosses pinkes Auto" class="big-car">
+<div class="car-wrap">
+  <img src="media/big car pink.png" alt="Auto" class="big-car">
+  <div class="hupi">
+    <img src="media/hupi.png" alt="Hupknopf" id="hupiBtn">
+    <audio id="hupiSound" src="sound/horn.mp3" preload="auto"></audio>
+  </div>
 
       <!-- Hintergrund-Fahrzeuge: Anzahl wird per JS dynamisch gesetzt -->
       <div id="carField" aria-hidden="true"></div>

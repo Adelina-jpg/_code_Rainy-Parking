@@ -1,4 +1,3 @@
-/* Basis */
 * { box-sizing: border-box; }
 html,
 body {
@@ -109,6 +108,7 @@ body {
   border-radius: 18px;
   overflow: hidden;
 }
+
 .big-car {
   position: absolute;
   right: 0;
@@ -118,7 +118,7 @@ body {
   height: auto;
   pointer-events: none;  /* damit nichts klickbar ist */
 }
-/* Hintergrund-Fahrzeuge (JS füllt) */
+/* Hintergrund-Fahrzeuge */
 #carField {
   position: absolute;
   inset: 0;
@@ -131,19 +131,24 @@ body {
   right: 40px;
   bottom: 24px;
 }
-.hero-car {
+
+.car-wrap {
   position: absolute;
   right: 0;
   bottom: 0;
-  max-width: min(46vw, 600px);
+  width: min(46vw, 600px); 
+}
+.big-car {
+  display: block;
+  width: 100%;
   height: auto;
   pointer-events: none;
 }
-/* Hupi-Button (nähe beim Auto) */
+/* Hupi-Button */
 .hupi {
   position: absolute;
-  right: 425px;   /* näher ans Auto von rechts */
-  bottom: 160px;  /* näher ans Auto von unten */
+  right: 100%;   
+  bottom: 13rem; 
 }
 
 #hupiBtn {
@@ -167,30 +172,13 @@ body {
 .pressme {
   position: absolute;
   right: -100px;     /* gleiche Linie wie Hupi */
-  bottom: 10px;   /* etwas über dem Hupi */
-  width: 100px;    /* Größe anpassen */
+  bottom: 10px;  
+  width: 100px;    
   height: auto;
   pointer-events: none; /* nicht klickbar */
 }
 
-
-/* Footer */
-.site-footer {
-  padding: 24px 56px 40px;
-  opacity: .85;
-}
-
-/* Responsiv */
-@media (max-width: 900px) {
-  .layout {
-    grid-template-columns: 1fr;
-    padding: 8px 20px 40px;
-  }
-  .site-header { padding: 28px 20px 4px; }
-  .hero-car { max-width: 90vw; }
-}
-
-/* Fix sichtbarer Kalender */
+/* Kalender */
 .calendar {
   background:#fff; border-radius:16px; padding:14px 14px 18px;
   box-shadow:0 8px 24px rgb(0 0 0 / 10%); 
@@ -233,3 +221,30 @@ body {
 .cal-day.today{outline:2px solid #c7b8bf;}
 .cal-day.selected{background:#4a2e35;color:#fff;}
 .cal-day.disabled{opacity:.35; pointer-events:none;}
+
+/* Kalender sicher über allem links halten */
+.panel.left { position: relative; z-index: 2; }
+.calendar   { position: relative; z-index: 3; }
+
+/* Nur zukünftige Tage blockieren, alle anderen klickbar */
+.cal-day { pointer-events: auto; }
+.cal-day.disabled { pointer-events: none; }
+
+
+
+/* Footer */
+.site-footer {
+  padding: 24px 56px 40px;
+  opacity: .85;
+}
+
+/* Responsiv */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 8px 20px 40px;
+  }
+  .site-header { padding: 28px 20px 4px; }
+  .hero-car { max-width: 90vw; }
+}
+
