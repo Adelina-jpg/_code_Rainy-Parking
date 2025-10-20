@@ -81,6 +81,7 @@ calEl.append(head);
 renderCalendar();
 
 // klick
+
 document.getElementById('queryBtn')?.addEventListener('click', async () => {
   if (!selectedDate) {
     errorsEl.textContent = 'Bitte ein Datum wählen.';

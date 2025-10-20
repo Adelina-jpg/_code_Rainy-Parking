@@ -248,3 +248,11 @@ body {
   .hero-car { max-width: 90vw; }
 }
 
+/* Ensure left panel (calendar) always receives clicks over the stage */
+.panel.stage { pointer-events: none; z-index: 0; }
+.panel.left  { position: relative; z-index: 10; }
+.calendar    { position: relative; z-index: 20; }
+
+/* Re-enable pointer events for interactive elements on the stage */
+.hupi, #hupiBtn { pointer-events: auto; }
+
