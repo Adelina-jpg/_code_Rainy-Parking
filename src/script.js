@@ -7,10 +7,18 @@ const freeText = document.getElementById("freeText");
 
 // Fetch data for a given date (YYYY-MM-DD)
 async function fetchByDate(date) {
-  const d = date.toISOString().slice(0, 10); // YYYY-MM-DD
-  const res = await fetch(`/backend/api/getByDate.php?date=${d}`);
+  const d = toYmdLocal(selectedDate);
+  // safest: resolves relative to the current page
+  const apiUrl = new URL("backend/getByDate.php", window.location.href);
+  const res = await fetch(`${apiUrl}?date=${d}`);
+
   if (!res.ok) throw new Error("API error");
   return res.json();
+}
+
+function toYmdLocal(date) {
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
 let viewDate = new Date(); // currently displayed month
