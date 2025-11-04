@@ -1,10 +1,12 @@
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 html,
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: #ffffff;
-  background: #98c3d1; 
+  background: #98c3d1;
   height: 100%;
   overflow: hidden; /* verhindert Scrollen */
 }
@@ -12,9 +14,13 @@ body {
 /* Hilfsklasse (für Screenreader sichtbar, optisch versteckt) */
 .visually-hidden {
   position: absolute !important;
-  width: 1px; height: 1px;
-  margin: -1px; padding: 0; border: 0;
-  clip: rect(0 0 0 0); overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
   white-space: nowrap;
 }
 
@@ -32,14 +38,14 @@ body {
 }
 
 .logo {
-  width: 365px;   
+  width: 365px;
   height: auto;
   display: block;
 }
 .lead {
   font-size: clamp(16px, 2.2vw, 22px);
   margin: 8px 0 0;
-  color: #492E36;
+  color: #492e36;
 }
 
 /* Layout: links Controls, rechts Bühne */
@@ -51,24 +57,17 @@ body {
   padding: 8px 40px 56px;
   min-height: calc(100vh - 160px);
 }
+
 .panel.left {
   border-radius: 16px;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* richtet Inhalte nach rechts aus */
-  gap: 16px; /* etwas Abstand zwischen Kalender, Button, Fehler */
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  z-index: 10;
 }
-.label { display:block; font-weight:600; margin: 6px 0 6px; }
-#dateInput {
-  width: 100%;
-  font: inherit;
-  padding: 12px 14px;
-  border: 2px solid #cabcc3;
-  border-radius: 10px;
-  background: #fff;
-}
-.hint { font-size: 14px; opacity: .8; margin: 6px 0 14px; }
 
 /* Buttons */
 .btn {
@@ -79,19 +78,20 @@ body {
   border: none;
   cursor: pointer;
   font-weight: 500;
-  transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
-  background: #492E36; 
+  transition: transform 0.06s ease, box-shadow 0.2s ease, background 0.2s ease;
+  background: #492e36;
   color: #fff;
   width: 160px;
-
 }
-.btn:hover { transform: translateY(-1px); }
-.btn:active { transform: translateY(2px); box-shadow: 0 3px 0 #2f1b20; }
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 0 #2f1b20;
+}
 
-.btn-secondary:hover { transform: translateY(-1px); }
-.btn-secondary:active { transform: translateY(2px); box-shadow: 0 2px 0 #e4a8b7; }
-
-/* Fehlermeldungen */
+/* Fehlermeldungen (wird später im HTML ergänzt) */
 .messages {
   margin-top: 12px;
   padding: 10px 12px;
@@ -107,17 +107,25 @@ body {
   min-height: 520px;
   border-radius: 18px;
   overflow: hidden;
+  pointer-events: none; /* Bühne empfängt keine Klicks, außer explizit erlaubt */
+  z-index: 0;
 }
 
-.big-car {
+/* Hero-Car Container + Car */
+.hero-car-container {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 70%;       
-  max-width: 600px;
-  height: auto;
-  pointer-events: none;  /* damit nichts klickbar ist */
+  width: min(46vw, 600px);
 }
+
+.big-car {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
 /* Hintergrund-Fahrzeuge */
 #carField {
   position: absolute;
@@ -125,30 +133,12 @@ body {
   pointer-events: none;
 }
 
-/* Honk-Bereich + Hero-Car */
-.honk-area {
+/* Honk-Bereich */
+.honk-button-area {
   position: absolute;
-  right: 40px;
-  bottom: 24px;
-}
-
-.car-wrap {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: min(46vw, 600px); 
-}
-.big-car {
-  display: block;
-  width: 100%;
-  height: auto;
-  pointer-events: none;
-}
-/* Hupi-Button */
-.hupi {
-  position: absolute;
-  right: 100%;   
-  bottom: 13rem; 
+  right: 100%;
+  bottom: 13rem;
+  pointer-events: auto; /* wieder aktiv */
 }
 
 #hupiBtn {
@@ -168,74 +158,78 @@ body {
   filter: brightness(0.9);
 }
 
-/* "Press me" Hinweis über dem Auto */
+/* "Press me" Hinweis */
 .pressme {
   position: absolute;
-  right: -100px;     /* gleiche Linie wie Hupi */
-  bottom: 10px;  
-  width: 100px;    
+  right: -100px;
+  bottom: 10px;
+  width: 100px;
   height: auto;
-  pointer-events: none; /* nicht klickbar */
+  pointer-events: none;
 }
 
 /* Kalender */
 .calendar {
-  background:#fff; border-radius:16px; padding:14px 14px 18px;
-  box-shadow:0 8px 24px rgb(0 0 0 / 10%); 
-  max-width: 500px; 
-  user-select:none;
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px 14px 18px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 10%);
+  user-select: none;
   width: 100%;
   max-width: 380px;
-  color: #492E36;
+  color: #492e36;
 }
 .cal-head {
   display: grid;
-  grid-template-columns: 38px 1fr 38px; /* links Pfeil – Mitte Monat – rechts Pfeil */
+  grid-template-columns: 38px 1fr 38px;
   align-items: center;
   margin: 4px 4px 10px;
 }
-
 .cal-month {
-  text-align: center;   /* Monat zentrieren */
+  text-align: center;
   font-weight: 800;
   font-size: 20px;
-  letter-spacing: .3px;
+  letter-spacing: 0.3px;
 }
-
-.cal-nav {
-  display: contents; /* Pfeile direkt in die Grid-Zellen setzen */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-top: 6px;
 }
-.cal-btn{
-  width:38px;height:38px;border:0;border-radius:12px;background:#fff;
-  box-shadow:0 6px 20px rgb(0 0 0 / 12%); cursor:pointer; font-size:18px;
+.cal-dow {
+  opacity: 0.6;
+  font-weight: 600;
+  text-align: center;
 }
-
-
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:6px;}
-.cal-dow{opacity:.6;font-weight:600;text-align:center;}
-.cal-day{
-  aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
-  border-radius:10px; cursor:pointer; font-weight:600;
+.cal-day {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
 }
-.cal-day:hover{background:#f1eef0;}
-.cal-day.today{outline:2px solid #c7b8bf;}
-.cal-day.selected{background:#4a2e35;color:#fff;}
-.cal-day.disabled{opacity:.35; pointer-events:none;}
-
-/* Kalender sicher über allem links halten */
-.panel.left { position: relative; z-index: 2; }
-.calendar   { position: relative; z-index: 3; }
-
-/* Nur zukünftige Tage blockieren, alle anderen klickbar */
-.cal-day { pointer-events: auto; }
-.cal-day.disabled { pointer-events: none; }
-
-
+.cal-day:hover {
+  background: #f1eef0;
+}
+.cal-day.today {
+  outline: 2px solid #c7b8bf;
+}
+.cal-day.selected {
+  background: #4a2e35;
+  color: #fff;
+}
+.cal-day.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
 
 /* Footer */
 .site-footer {
   padding: 24px 56px 40px;
-  opacity: .85;
+  opacity: 0.85;
 }
 
 /* Responsiv */
@@ -244,15 +238,10 @@ body {
     grid-template-columns: 1fr;
     padding: 8px 20px 40px;
   }
-  .site-header { padding: 28px 20px 4px; }
-  .hero-car { max-width: 90vw; }
+  .site-header {
+    padding: 28px 20px 4px;
+  }
+  .hero-car {
+    max-width: 90vw;
+  }
 }
-
-/* Ensure left panel (calendar) always receives clicks over the stage */
-.panel.stage { pointer-events: none; z-index: 0; }
-.panel.left  { position: relative; z-index: 10; }
-.calendar    { position: relative; z-index: 20; }
-
-/* Re-enable pointer events for interactive elements on the stage */
-.hupi, #hupiBtn { pointer-events: auto; }
-
