@@ -16,8 +16,8 @@ header('Content-Type: application/json; charset=utf-8');
 // --- DB credentials (as used in dev) ---
 $dbHost = '127.0.0.1';
 $dbName = 'rainy_parking';
-$dbUser = 'root';          // or 'rainy_user'
-$dbPass = '';              // set if you changed it
+$dbUser = 'root';
+$dbPass = 'root';
 
 // Read and validate date
 $requested = $_GET['date'] ?? date('Y-m-d');
