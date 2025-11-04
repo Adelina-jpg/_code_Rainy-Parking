@@ -49,3 +49,10 @@ Wie habt ihr diese Probleme gelöst? Zum Beispiel durch Tutorials, gegenseitige 
 - **GitHub Repository:**  
   <https://github.com/Adelina-jpg/Rainy-Parking.git>
 - **Projekt-URL (Deployment):** Link einfügen
+
+---
+
+## 6. Deployment
+
+- Cron-Job muss registriert werden. Beispiel: 0 * * * * /usr/bin/php /var/www/html/cron_fetch.php >> /var/log/rainy_parking.log 2>&1
+- DB Connection Credentials müssen korrigiert werden. Noch besser wäre eine Auslagerung in Environment Variables. 
