@@ -1,57 +1,47 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rainy Parking</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rainy Parking</title>
 
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="script.js"></script>
-</head>
-<body>
-  <header class="site-header">
-<img src="assets/images/Logo.png" alt="Rainy Parking Logo" class="logo">
-    <p id="summary" class="lead">
-      Am <span id="dateText">—</span> gab es in Basel bei
-      <span id="rainText">—</span> mm/h Regen
-      <span id="freeText">—</span> freie Parkplätze.
-    </p>
-  </header>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <img src="assets/images/Logo.png" alt="Rainy Parking Logo" class="logo" />
+      <p id="summary" class="lead">
+        Am <span id="dateText">—</span> gab es in Basel bei <span id="rainText">—</span> mm/h Regen <span id="freeText">—</span> freie Parkplätze.
+      </p>
+    </header>
 
-  <main class="layout">
-    
-    <!-- Linke Spalte: Kalender, Button, Fehlermeldungen -->
-     
-    <section class="panel left">
-      <h2 class="visually-hidden">Abfrage</h2>
+    <main class="layout">
+      <!-- Linke Spalte: Kalender, Button (Fehlerbereich folgt später) -->
+      <section class="panel left">
+        <h2 class="visually-hidden">Abfrage</h2>
+        <div id="calendar" class="calendar"></div>
+        <button id="queryBtn" type="button" class="btn">Abfragen</button>
+        <!-- <div id="errors" class="messages"></div>  (wird später ergänzt) -->
+      </section>
 
+      <!-- Rechte Spalte: Bühne mit Auto, Honk-Button & Hintergrund-Fahrzeuge -->
+      <section class="panel stage">
+        <div class="hero-car-container">
+          <img src="assets/images/big_car_pink.png" alt="Auto" class="big-car" />
 
-<div id="calendar" class="calendar"></div>
-<button id="queryBtn" type="button" class="btn">abfragen</button>  
+          <div class="honk-button-area">
+            <img src="assets/images/Hupi.png" alt="Hupknopf" id="hupiBtn" />
+            <img src="assets/images/press_me.png" alt="Hinweis: drücken" class="pressme" />
+            <audio id="hupiSound" src="assets/sounds/horn.mp3" preload="auto"></audio>
+          </div>
+        </div>
 
-</div>
-    </section>
+        <!-- Hintergrund-Fahrzeuge: Anzahl wird per JS dynamisch gesetzt -->
+        <div id="carField" aria-hidden="true"></div>
+      </section>
+    </main>
 
-    <!-- Rechte Spalte: Bühne mit Auto, Hup-Button & fahrende Autos im Hintergrund -->
-<div class="car-wrap">
-  <img src="assets/images/big_car_pink.png" alt="Auto" class="big-car">
-  <div class="hupi">
-    <img src="assets/images/Hupi.png" alt="Hupknopf" id="hupiBtn">
-            <img src="assets/images/press_me.png" alt="Press me Hinweis" class="pressme">
-    <audio id="hupiSound" src="assets/sounds/horn.mp3" preload="auto"></audio>
-  </div>
-
-      <!-- Hintergrund-Fahrzeuge: Anzahl wird per JS dynamisch gesetzt -->
-      <div id="carField" aria-hidden="true"></div>
-
-
-
-
-    </section>
-  </main>
-
-  <footer class="site-footer">
-
-  </footer>
-</body>
+    <footer class="site-footer"></footer>
+  </body>
 </html>
