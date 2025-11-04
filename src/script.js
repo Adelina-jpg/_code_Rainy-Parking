@@ -133,7 +133,7 @@ document.getElementById("queryBtn")?.addEventListener("click", async () => {
     }
 
     const avgRain = rows.reduce((a, r) => a + (r.rain_mm_h ?? 0), 0) / rows.length;
-    const freeSum = rows.reduce((a, r) => a + (r.free_spaces ?? 0), 0);
+    const freeSum = rows.reduce((a, r) => a + (r.free_spaces ?? 0), 0) / rows.length;
 
     rainText.textContent = avgRain.toFixed(1);
     freeText.textContent = freeSum.toLocaleString("de-CH");
