@@ -255,4 +255,3 @@ body {
 
 /* Re-enable pointer events for interactive elements on the stage */
 .hupi, #hupiBtn { pointer-events: auto; }
-
