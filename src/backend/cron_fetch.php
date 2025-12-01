@@ -74,9 +74,6 @@ try {
     $stmt = $pdo->prepare("
         INSERT INTO hourly_data (hour, rain, parking_lots)
         VALUES (:hour, :rain, :lots)
-        ON DUPLICATE KEY UPDATE
-            rain = VALUES(rain),
-            parking_lots = VALUES(parking_lots)
     ");
     $stmt->execute([
         ':hour' => $bucketTs,
