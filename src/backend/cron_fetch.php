@@ -13,10 +13,10 @@ error_reporting(E_ALL);
 date_default_timezone_set('Europe/Zurich');
 
 // --- DB credentials (in-file per school project) ---
-$dbHost = '127.0.0.1';
-$dbName = 'rainy_parking';
-$dbUser = 'root';
-$dbPass = 'root';
+$dbHost = getenv('DB_HOST') ?: '127.0.0.1';
+$dbName = getenv('DB_NAME') ?: 'rainy_parking';
+$dbUser = getenv('DB_USER') ?: 'root';
+$dbPass = getenv('DB_PASS') ?: 'root';
 
 function http_get_json(string $url, int $timeout = 15): array {
     if (!function_exists('curl_init')) {
