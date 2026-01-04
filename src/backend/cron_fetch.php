@@ -18,20 +18,73 @@ $dbName = 'rainy_parking';
 $dbUser = 'root';
 $dbPass = 'root';
 
-// --- Simple HTTP GET -> array ---
-function http_get_json(string $url, int $timeout = 10): array {
-    $ctx = stream_context_create([
-        'http' => ['method' => 'GET', 'timeout' => $timeout, 'ignore_errors' => true],
-        'ssl'  => ['verify_peer' => true, 'verify_peer_name' => true]
+function http_get_json(string $url, int $timeout = 15): array {
+    if (!function_exists('curl_init')) {
+        error_log('[HTTP FAIL] curl not available; url="' . $url . '"');
+        throw new RuntimeException("cURL not available on this server");
+    }
+
+    $ch = curl_init($url);
+
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_MAXREDIRS      => 3,
+        CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_TIMEOUT        => $timeout,
+        CURLOPT_HTTPHEADER     => [
+            'Accept: application/json',
+            'User-Agent: rainy-parking-cron/1.0',
+        ],
+        // TLS verification ON (good default)
+        CURLOPT_SSL_VERIFYPEER => true,
+        CURLOPT_SSL_VERIFYHOST => 2,
     ]);
-    $raw = @file_get_contents($url, false, $ctx);
-    if ($raw === false) {
+
+    $raw = curl_exec($ch);
+
+    $errno   = curl_errno($ch);
+    $errstr  = curl_error($ch);
+    $status  = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+    $ctype   = (string) curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+
+    curl_close($ch);
+
+    if ($raw === false || $errno !== 0) {
+        error_log(sprintf(
+            '[HTTP FAIL] url="%s" curl_errno=%d curl_error="%s" statusCode=%d contentType="%s"',
+            $url,
+            $errno,
+            str_replace(["\n", "\r"], ' ', $errstr),
+            $status,
+            $ctype
+        ));
         throw new RuntimeException("HTTP GET failed: $url");
     }
+
+    if ($status < 200 || $status >= 300) {
+        error_log(sprintf(
+            '[HTTP NON2XX] url="%s" statusCode=%d contentType="%s" bodySnippet="%s"',
+            $url,
+            $status,
+            $ctype,
+            str_replace(["\n", "\r"], ' ', substr($raw, 0, 300))
+        ));
+        throw new RuntimeException("HTTP non-2xx ($status) from $url");
+    }
+
     $json = json_decode($raw, true);
     if (!is_array($json)) {
+        error_log(sprintf(
+            '[HTTP BADJSON] url="%s" statusCode=%d contentType="%s" bodySnippet="%s"',
+            $url,
+            $status,
+            $ctype,
+            str_replace(["\n", "\r"], ' ', substr($raw, 0, 300))
+        ));
         throw new RuntimeException("Invalid JSON from $url");
     }
+
     return $json;
 }
 
