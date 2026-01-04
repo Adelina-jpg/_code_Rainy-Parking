@@ -14,10 +14,10 @@ date_default_timezone_set('Europe/Zurich');
 header('Content-Type: application/json; charset=utf-8');
 
 // --- DB credentials (as used in dev) ---
-$dbHost = '127.0.0.1';
-$dbName = 'rainy_parking';
-$dbUser = 'root';
-$dbPass = 'root';
+$dbHost = getenv('DB_HOST') ?: '127.0.0.1';
+$dbName = getenv('DB_NAME') ?: 'rainy_parking';
+$dbUser = getenv('DB_USER') ?: 'root';
+$dbPass = getenv('DB_PASS') ?: 'root';
 
 // Read and validate date
 $requested = $_GET['date'] ?? date('Y-m-d');
