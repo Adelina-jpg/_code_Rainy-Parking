@@ -10,6 +10,8 @@ Die Web-App **Rainy Parking** kombiniert in Echtzeit Parkplatzdaten der Stadt Ba
 
 Wir haben viel über Teamarbeit gelernt: Wir waren anfangs sehr schnell unterwegs und hatten viele Ideen, haben aber erst später gemerkt, dass nicht alle APIs zu unserem Konzept passen. Dadurch haben wir gelernt, uns mehr Zeit bei der Ideensuche zu nehmen und unsere Auswahl besser abzustimmen.
 
+Aufgrund eines unstrukturierten Aufbaus ging viel Zeit verloren. Rückblickend wäre es sinnvoll gewesen, von Beginn an eine klare rote Linie festzulegen, die Aufgaben eindeutig aufzuteilen und das Projekt frühzeitig gemeinsam mit einer fachkundigen Person zu strukturieren.
+
 **Ergänzen (Beispieltexte):**
 - mit GitHub Pages zu deployen  
 - Figma für Prototypen einzusetzen  
@@ -21,6 +23,7 @@ Wir haben viel über Teamarbeit gelernt: Wir waren anfangs sehr schnell unterweg
 
 - **APIs:** Es war nicht einfach, eine geeignete API zu finden, die zuverlässig funktioniert.
 - **Technik:** Teilweise hatten wir Schwierigkeiten, den Code zu verstehen und die JSON-Daten korrekt auszulesen.
+- **roter Faden**: Da die Struktur zu Beginn fehlte, wurden einzelne Schritte übersehen, was später zu Unübersichtlichkeit führte und externe Hilfe notwendig machte. Die nachträgliche Fehlersuche erwies sich deutlich aufwendiger, als wenn von Anfang an korrekt und systematisch gearbeitet worden wäre.
 
 **Ergänzen (optional):**  
 Wie habt ihr diese Probleme gelöst? Zum Beispiel durch Tutorials, gegenseitige Hilfe, ChatGPT oder Tests im Browser.
@@ -35,9 +38,10 @@ Wie habt ihr diese Probleme gelöst? Zum Beispiel durch Tutorials, gegenseitige 
 
 ### Tools und Technologien
 - Figma (Prototyping)
-- JavaScript, HTML, CSS
+- JavaScript, HTML, CSS, PHP, SQL
 - GitHub & GitHub Pages
 - ChatGPT (Fragen und Debugging)
+- externe Hilfe (IT-Ausbildner) 
 
 ---
 
@@ -48,7 +52,8 @@ Wie habt ihr diese Probleme gelöst? Zum Beispiel durch Tutorials, gegenseitige 
   <https://www.figma.com/design/eQnoVjTLfJhwhbWJ6SGIvb/IM-III--Don’t-Fry-Today?node-id=13-3&t=ATr4q5pwMhfdtNE3-1>
 - **GitHub Repository:**  
   <https://github.com/Adelina-jpg/Rainy-Parking.git>
-- **Projekt-URL (Deployment):** Link einfügen
+- **Projekt-URL (Deployment):**
+  <https://rainy-parking.adelina-mezenen.ch>
 
 ---
 
