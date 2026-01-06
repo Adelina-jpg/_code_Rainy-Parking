@@ -25,9 +25,6 @@ Aufgrund eines unstrukturierten Aufbaus ging viel Zeit verloren. Rückblickend w
 - **Technik:** Teilweise hatten wir Schwierigkeiten, den Code zu verstehen und die JSON-Daten korrekt auszulesen.
 - **roter Faden**: Da die Struktur zu Beginn fehlte, wurden einzelne Schritte übersehen, was später zu Unübersichtlichkeit führte und externe Hilfe notwendig machte. Die nachträgliche Fehlersuche erwies sich deutlich aufwendiger, als wenn von Anfang an korrekt und systematisch gearbeitet worden wäre.
 
-**Ergänzen (optional):**  
-Wie habt ihr diese Probleme gelöst? Zum Beispiel durch Tutorials, gegenseitige Hilfe, ChatGPT oder Tests im Browser.
-
 ---
 
 ## 4. Ressourcen
@@ -56,8 +53,3 @@ Wie habt ihr diese Probleme gelöst? Zum Beispiel durch Tutorials, gegenseitige 
   <https://rainy-parking.adelina-mezenen.ch>
 
 ---
-
-## 6. Deployment
-
-- Cron-Job muss registriert werden. Beispiel: 0 * * * * /usr/bin/php /var/www/html/cron_fetch.php >> /var/log/rainy_parking.log 2>&1
-- DB Connection Credentials müssen korrigiert werden. Noch besser wäre eine Auslagerung in Environment Variables. 
